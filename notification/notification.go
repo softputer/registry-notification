@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 func EventHandler(w http.ResponseWriter, r *http.Request) {
@@ -16,7 +17,12 @@ func EventHandler(w http.ResponseWriter, r *http.Request) {
 	}	
 	for _, event := range all_event.Events {
 		//w.Write([]byte(event.Action))
-		fmt.Println(event.Action)
+		if event.Action == "pull" {
+			if strings.Contains(event.Target.URL, "manifests") {
+				fmt.Println(event.Action)
+				fmt.Println(event.Target.URL)
+			}
+		}
 		
 	}
 	w.Write([]byte(r.URL.Path + "\n"))
