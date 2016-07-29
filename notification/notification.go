@@ -13,7 +13,7 @@ import (
 func PostPull(url string, repo string, tag string) (err error){
 	content := "name=" + repo + ":" + tag
 	fmt.Println(content)
-	resp, err := http.Post(url + "/dockerImages/pull", "application/x-www-form-urlencoded", strings.NewReader(content))
+	resp, err := http.Post(url + "/dockerImages/pull", "application/json", strings.NewReader(content))
         if err != nil {
         	fmt.Println("POST request err!")
 		return err
