@@ -11,7 +11,7 @@ import (
 )
 
 func PostPull(url string, repo string, tag string) (err error){
-	content := "name=" + repo + ":" + tag
+	content := "name=" + repo
 	fmt.Println(content)
 	resp, err := http.Post(url + "/dockerImages/pull", "application/json", strings.NewReader(content))
         if err != nil {
